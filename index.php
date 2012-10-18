@@ -2,4 +2,12 @@
     phpinfo();
 ?>
 
-<div>hello</div>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+	</head>
+	<body>
+		<div>hello</div>
+	</body>
+</html>
