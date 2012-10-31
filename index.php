@@ -9,6 +9,6 @@
 	</head>
 	<body>
 		<div>hello</div>
-		<div>this is cool</div>
+		<div>this is super super super cool</div>
 	</body>
 </html>
