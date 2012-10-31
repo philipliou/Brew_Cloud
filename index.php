@@ -9,5 +9,6 @@
 	</head>
 	<body>
 		<div>hello</div>
+		<div>this is cool</div>
 	</body>
 </html>
