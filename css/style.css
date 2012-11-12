@@ -1,3 +1,290 @@
+/*******************************************/
+/************* COLOR SCHEME ****************/
+/*******************************************/
+/* iPod Nano Color Scheme */
+/*******************************************/
+/*************** CSS RESET *****************/
+/*******************************************/
+/* Credit to Eric Meyer for a great starting point */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/*******************************************/
+/*********** MIX IN ATTRIBUTES *************/
+/*******************************************/
+/* Rounding and Shadows */
+/*******************************************/
+/************* COLOR CLASSES ***************/
+/*******************************************/
+.blue {
+  color: #0d9fd8;
+}
+.charcoal {
+  color: #787679;
+}
+.green {
+  color: #8ad749;
+}
+.orange {
+  color: #f8981f;
+}
+.pink {
+  color: #f640ae;
+}
+.purple {
+  color: #8569cf;
+}
+.red {
+  color: #f80e27;
+}
+.silver {
+  color: #e2e2e2;
+}
+.yellow {
+  color: #eece00;
+}
+.background-blue {
+  background-color: #0d9fd8;
+}
+.background-charcoal {
+  background-color: #787679;
+}
+.background-green {
+  background-color: #8ad749;
+}
+.background-orange {
+  background-color: #f8981f;
+}
+.background-pink {
+  background-color: #f640ae;
+}
+.background-purple {
+  background-color: #8569cf;
+}
+.background-red {
+  background-color: #f80e27;
+}
+.background-silver {
+  background-color: #e2e2e2;
+}
+.background-yellow {
+  background-color: #eece00;
+}
+/*******************************************/
+/************* BASIC ELEMENTS **************/
+/*******************************************/
+::selection {
+  background: #484848;
+  color: #EEE;
+}
+::-moz-selection {
+  background: #484848;
+  color: #EEE;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: #ffffff;
+  color: #282828;
+  font-family: Segoe UI, Tahoma, Geneva, Sans-Serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 0;
+  padding: 0;
+  z-index: 0;
+}
+a {
+  color: #282828;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #0d9fd8;
+  text-decoration: none;
+}
+h1,
+h2,
+h3 {
+  font-family: inherit;
+  margin: 4px 0 8px 0;
+}
 h1 {
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
+}
+h2 {
+  font-size: 16px;
+}
+h3 {
+  font-size: 14px;
+}
+p {
+  line-height: inherit;
+  padding: 4px 0 4px 0;
+}
+/*******************************************/
+/************* GENERIC CLASSES *************/
+/*******************************************/
+/*******************************************/
+/***************** HEADER ******************/
+/*******************************************/
+header {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@number100)";
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  background-color: #28282a;
+  color: #e5e5e5;
+  height: 24px;
+  padding: 8px 0 12px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+/*******************************************/
+/***************** CONTENT *****************/
+/*******************************************/
+.content {
+  margin-top: 52px;
+}
+/*******************************************/
+/***************** FOOTER ******************/
+/*******************************************/
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -42px;
+  /* the bottom margin is the negative value of the footer's height */
+
+}
+footer {
+  background-color: #ababae;
+  color: inherit;
+}
+footer,
+.push {
+  height: 42px;
 }
