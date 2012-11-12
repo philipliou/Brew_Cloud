@@ -9,7 +9,7 @@
 <head>
 	<link href="css/bootstrap.css" rel="stylesheet" />
 	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
-	<link href="http://www.stevepappas.net/css/style.css?a1" rel="stylesheet" />
+	<link href="css/style.css?a1" rel="stylesheet" />
 </head>
 <body>
 	<div class="wrapper">

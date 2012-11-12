@@ -54,9 +54,9 @@ table
 
 .rounded-corners (@radius: 4px)
 {
-    border-radius: @radius;
     -webkit-border-radius: @radius;
     -moz-border-radius: @radius;
+    border-radius: @radius;
 }
 
 .border()
@@ -64,9 +64,8 @@ table
     border: 1px solid @border-color-light;
 }
 
-.transparent (@number: 0.5, @number100: 50)
+.transparent (@number: 0.5)
 {
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@number100)";
 	-moz-opacity: @number;
 	-khtml-opacity: @number;
 	opacity: @number;
@@ -145,13 +144,24 @@ p { line-height: inherit; padding: 4px 0 4px 0; }
 /************* GENERIC CLASSES *************/
 /*******************************************/
 
+.wrapper
+{
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -40px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.left { float: left; }
+.right { float: right; }
+
 /*******************************************/
 /***************** HEADER ******************/
 /*******************************************/
 
 header
 {
-	.transparent(0.9, 90);
+	.transparent(0.9);
 	background-color: @background-header;
 	color: @font-header;
 	height: 24px;
@@ -174,18 +184,12 @@ header
 /***************** FOOTER ******************/
 /*******************************************/
 
-.wrapper
-{
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	margin: 0 auto -42px; /* the bottom margin is the negative value of the footer's height */
-}
-
 footer
 {
 	background-color: @background-footer;
 	color: inherit;
+	height: 36px;
+	padding-top: 4px;
 }
 
-footer, .push { height: 42px; }
+.push { height: 40px; }

@@ -247,11 +247,24 @@ p {
 /*******************************************/
 /************* GENERIC CLASSES *************/
 /*******************************************/
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -40px;
+  /* the bottom margin is the negative value of the footer's height */
+
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
 /*******************************************/
 /***************** HEADER ******************/
 /*******************************************/
 header {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@number100)";
   -moz-opacity: 0.9;
   -khtml-opacity: 0.9;
   opacity: 0.9;
@@ -272,19 +285,12 @@ header {
 /*******************************************/
 /***************** FOOTER ******************/
 /*******************************************/
-.wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -42px;
-  /* the bottom margin is the negative value of the footer's height */
-
-}
 footer {
-  background-color: #ababae;
+  background-color: #bcbcbe;
   color: inherit;
+  height: 36px;
+  padding-top: 4px;
 }
-footer,
 .push {
-  height: 42px;
+  height: 40px;
 }
