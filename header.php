@@ -1,5 +1,10 @@
 <header>
 	<div class="container">
-		<h1>BrewCloud</h1>
+		<div class="left">
+			<h1>BrewCloud</h1>
+		</div>
+		<div class="right">
+			<p>REGISTER &nbsp;&nbsp;&nbsp; LOGIN</p>
+		</div>
 	</div>
 </header>
