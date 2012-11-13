@@ -1,16 +1,4 @@
 <div class="row">
-	<div class="span12">
-		<div class="left" style="width: 93%;">
-			<input class="search-box" type="text" placeholder="Search for beers or breweries" style="height: 28px; margin-bottom: 16px;"></input>
-		</div>
-		<div class="right" style="width: 5%;">
-			<button class="btn search-btn" style="height: 36px;"><i class="icon-search"></i></button>
-		</div>
-		
-	</div>
-</div>
-
-<div class="row">
 	<div class="span4">
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula facilisis eros eget tristique. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat aliquet augue at feugiat. Mauris semper venenatis euismod. Donec cursus tellus at mauris commodo tincidunt. Aenean rutrum nisl eget tortor ullamcorper venenatis.</p>
 	</div>

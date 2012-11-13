@@ -3,6 +3,13 @@
 	
 	$pageName = "index";
 	require("config.php");
+	
+	if (isset($_GET["query"])) {
+		$query = $_GET["query"];
+	}
+	else {
+		$query = "";
+	}
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +34,9 @@
 				<div class="span12">
 					<form action="search.php" method="GET">
 						<div class="left" style="width: 93%;">
-							<input class="search-box" type="text" name="query" placeholder="Search for beers or breweries" style="height: 28px; margin-bottom: 16px;"></input>
+							<input class="search-box" type="text" name="query" placeholder="Search for beers or breweries" value="<?php echo $query; ?>" style="height: 28px; margin-bottom: 16px;">
+								
+							</input>
 						</div>
 						<div class="right" style="width: 5%;">
 							<button class="btn search-btn" type="submit" style="height: 36px;"><i class="icon-search"></i></button>
@@ -37,7 +46,28 @@
 			</div>
 			
 			<!-- page content -->
-			<?php include("main.php"); ?>
+			<?php if (isset($_GET["query"])) { ?>
+			<div class="row">
+				<div class="span2">
+					<h2>Filters</h2>
+				</div>
+				<div class="span10">
+					<h2 style="margin-bottom: 20px;">Search results for <span class="bold italic"><?php echo $query; ?></span>:</h2>
+					
+					<div class="well well-large">
+						<h2>Budweiser</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Coors Light</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Delirium Tremens</h2>
+					</div>
+				</div>
+			</div>
+			<?php } else { ?>
+			<h2>Results will be displayed below</h2>
+			<?php } ?>
 			<!-- end page content -->
 			
 		</div>

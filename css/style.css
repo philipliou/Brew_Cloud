@@ -255,6 +255,12 @@ p {
   /* the bottom margin is the negative value of the footer's height */
 
 }
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
 .left {
   float: left;
 }
