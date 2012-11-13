@@ -1,7 +1,8 @@
 <?php
 	session_start();
 	
-	$pageName = "index";
+	$pageName = "register";
+	require("config.php");
 ?>
 
 <!DOCTYPE html>

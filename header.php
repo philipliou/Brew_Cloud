@@ -1,7 +1,7 @@
 <header>
 	<div class="container">
 		<div class="left">
-			<a href="/"><h1>BrewCloud</h1></a>
+			<a href="http://w4111a.cs.columbia.edu/~smp2183/"><h1>BrewCloud</h1></a>
 		</div>
 		<div class="right">
 			<ul>

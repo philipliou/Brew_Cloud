@@ -2,6 +2,7 @@
 	session_start();
 	
 	$pageName = "index";
+	require("config.php");
 ?>
 
 <!DOCTYPE html>

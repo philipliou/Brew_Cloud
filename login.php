@@ -1,7 +1,8 @@
 <?php
 	session_start();
 	
-	$pageName = "index";
+	$pageName = "login";
+	require("config.php");
 ?>
 
 <!DOCTYPE html>
