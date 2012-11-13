@@ -10,6 +10,10 @@
 	<link href="css/bootstrap.css" rel="stylesheet" />
 	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
 	<link href="css/style.css?a1" rel="stylesheet" />
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="scripts/jquery.placeholder.min.js" type="text/javascript"></script>
+	<script src="scripts/bootstrap.min.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -17,20 +21,11 @@
 	
 		<div class="container">
 			<div style="height: 52px;"></div>
-			<div class="row">
-				<div class="span12" style="text-align: center">
-					<p>Search box</p>
-				</div>
-			</div>
-			<div class="row">
-		  		<div class="span2">
-		  			Column 1
-		  		</div>
-		  		<div class="span5">Column 2</div>
-		  		<div class="span5">Column 3</div>
-			</div>
+			
+			<!-- page content -->
+			<?php include("main.php"); ?>
+			
 		</div>
-		<div style="clear: both;"></div>
 		
 		<div class="push"></div>
 	

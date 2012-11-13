@@ -163,6 +163,7 @@ header
 {
 	.transparent(0.9);
 	background-color: @background-header;
+	box-shadow: 0 0 12px #555555;
 	color: @font-header;
 	height: 24px;
 	padding: 8px 0 12px 0;
@@ -180,6 +181,12 @@ header
 	margin-top: 52px;
 }
 
+.search-box
+{
+	margin-top: 8px;
+	width: 100%;
+}
+
 /*******************************************/
 /***************** FOOTER ******************/
 /*******************************************/
@@ -187,7 +194,7 @@ header
 footer
 {
 	background-color: @background-footer;
-	color: inherit;
+	color: @font-header;
 	height: 36px;
 	padding-top: 4px;
 }

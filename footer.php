@@ -1,5 +1,5 @@
 <footer>
 	<div class="container">
-		<p>This is the bottom</p>
+		<p><span style="font-weight: bold;">PS</span>Group &copy; 2012</p>
 	</div>
 </footer>

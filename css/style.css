@@ -269,6 +269,7 @@ header {
   -khtml-opacity: 0.9;
   opacity: 0.9;
   background-color: #28282a;
+  box-shadow: 0 0 12px #555555;
   color: #e5e5e5;
   height: 24px;
   padding: 8px 0 12px 0;
@@ -282,12 +283,16 @@ header {
 .content {
   margin-top: 52px;
 }
+.search-box {
+  margin-top: 8px;
+  width: 100%;
+}
 /*******************************************/
 /***************** FOOTER ******************/
 /*******************************************/
 footer {
-  background-color: #bcbcbe;
-  color: inherit;
+  background-color: #48484f;
+  color: #e5e5e5;
   height: 36px;
   padding-top: 4px;
 }
