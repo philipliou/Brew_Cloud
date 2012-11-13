@@ -1,10 +1,13 @@
 <header>
 	<div class="container">
 		<div class="left">
-			<h1>BrewCloud</h1>
+			<a href="/"><h1>BrewCloud</h1></a>
 		</div>
 		<div class="right">
-			<p>REGISTER &nbsp;&nbsp;&nbsp; LOGIN</p>
+			<ul>
+				<li><a href="login.php">LOGIN</a></li>
+				<li><a href="register.php">REGISTER</a></li>
+			</ul>
 		</div>
 	</div>
 </header>

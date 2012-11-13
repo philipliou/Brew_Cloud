@@ -23,7 +23,7 @@
 			<div style="height: 52px;"></div>
 			
 			<!-- page content -->
-			<?php include("main.php"); ?>
+			<h1>Register</h1>
 			<!-- end page content -->
 			
 		</div>

@@ -221,7 +221,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #0d9fd8;
+  color: #b99550;
   text-decoration: none;
 }
 h1,
@@ -277,6 +277,15 @@ header {
   top: 0;
   width: 100%;
 }
+header ul li {
+  float: right;
+  line-height: 28px;
+  margin-left: 16px;
+  margin-right: 2px;
+}
+header a {
+  color: #e5e5e5;
+}
 /*******************************************/
 /***************** CONTENT *****************/
 /*******************************************/
@@ -288,7 +297,7 @@ header {
   width: 100%;
 }
 .search-btn {
-  margin-left: 20px;
+  margin-left: 2%;
   margin-top: 9px;
   width: 100%;
 }
