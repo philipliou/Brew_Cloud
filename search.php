@@ -63,6 +63,33 @@
 					<div class="well well-large">
 						<h2>Delirium Tremens</h2>
 					</div>
+					<div class="well well-large">
+						<h2>Budweiser</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Coors Light</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Delirium Tremens</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Budweiser</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Coors Light</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Delirium Tremens</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Budweiser</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Coors Light</h2>
+					</div>
+					<div class="well well-large">
+						<h2>Delirium Tremens</h2>
+					</div>
 				</div>
 			</div>
 			<?php } else { ?>

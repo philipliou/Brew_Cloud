@@ -283,6 +283,9 @@ header {
   top: 0;
   width: 100%;
 }
+#header-logo {
+  margin-top: -5px;
+}
 header ul li {
   float: right;
   line-height: 28px;
@@ -291,6 +294,13 @@ header ul li {
 }
 header a {
   color: #e5e5e5;
+  outline: none;
+}
+header a:hover,
+header a:focus,
+header a:visited,
+header a:active {
+  outline: none;
 }
 /*******************************************/
 /***************** CONTENT *****************/
@@ -298,14 +308,33 @@ header a {
 .content {
   margin-top: 52px;
 }
+.modal input[type="text"],
+.modal input[type="password"],
+.modal input[type="email"] {
+  width: 95%;
+}
 .search-box {
-  margin-top: 8px;
+  margin-top: 10px;
   width: 100%;
 }
 .search-btn {
   margin-left: 2%;
-  margin-top: 9px;
+  margin-top: 11px;
   width: 100%;
+}
+.well:hover {
+  background-color: #EEE;
+  cursor: pointer;
+  transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  /* Firefox 4 */
+
+  -webkit-transition: background-color 0.5s;
+  /* Safari and Chrome */
+
+  -o-transition: background-color 0.5s;
+  /* Opera */
+
 }
 /*******************************************/
 /***************** FOOTER ******************/
