@@ -255,6 +255,9 @@ p {
   /* the bottom margin is the negative value of the footer's height */
 
 }
+.container {
+  padding-bottom: 8px;
+}
 .bold {
   font-weight: bold;
 }
@@ -295,11 +298,29 @@ header ul li {
 header a {
   color: #e5e5e5;
   outline: none;
+  padding: 0 2px 2px 2px;
+}
+header ul li a {
+  border-bottom: 1px solid #202023;
+}
+header a:hover {
+  border-bottom-color: #e5e5e5;
+  transition: border-bottom-color 0.2s;
+  -moz-transition: border-bottom-color 0.2s;
+  /* Firefox 4 */
+
+  -webkit-transition: border-bottom-color 0.2s;
+  /* Safari and Chrome */
+
+  -o-transition: border-bottom-color 0.2s;
+  /* Opera */
+
 }
 header a:hover,
 header a:focus,
 header a:visited,
 header a:active {
+  color: #e5e5e5;
   outline: none;
 }
 /*******************************************/
@@ -313,9 +334,24 @@ header a:active {
 .modal input[type="email"] {
   width: 95%;
 }
+.search-surround {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  background-color: #808083;
+  margin: 10px 0 16px 0;
+  padding: 4px 12px 4px 12px;
+}
 .search-box {
+  background-image: url('../img/search-black-light.png');
+  background-repeat: no-repeat;
+  background-position: 99%;
   margin-top: 10px;
-  width: 100%;
+  width: 98%;
+}
+.search-box:hover,
+.search-box:focus {
+  background-image: url('../img/search-black.png');
 }
 .search-btn {
   margin-left: 2%;

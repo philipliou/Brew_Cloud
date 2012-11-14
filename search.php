@@ -31,16 +31,9 @@
 			<div style="height: 52px;"></div>
 			
 			<div class="row">
-				<div class="span12">
+				<div class="span12" style="text-align: center;">
 					<form action="search.php" method="GET">
-						<div class="left" style="width: 93%;">
-							<input class="search-box" type="text" name="query" placeholder="Search for beers or breweries" value="<?php echo $query; ?>" style="height: 28px; margin-bottom: 16px;">
-								
-							</input>
-						</div>
-						<div class="right" style="width: 5%;">
-							<button class="btn search-btn" type="submit" style="height: 36px;"><i class="icon-search"></i></button>
-						</div>
+						<input class="search-box" type="text" name="query" placeholder="Search for beers or breweries" value="<?php echo $query; ?>" style="height: 28px; margin: 10px 0 16px 0; padding-left: 1%; padding-right: 1%;"></input>
 					</form>
 				</div>
 			</div>
