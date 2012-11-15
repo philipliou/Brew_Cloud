@@ -6,7 +6,8 @@
 	require_once("utility.php");
 	
 	if (isset($_GET["query"])) {
-		$query = $_GET["query"];
+		$query = strtolower($_GET["query"]);
+		$query = filter_var($query, FILTER_SANITIZE_SPECIAL_CHARS);
 	}
 	else {
 		$query = "";
@@ -14,7 +15,6 @@
 	
 	$error = NULL;
 
-	oci_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +51,24 @@
 				</div>
 				<div class="span10">
 					<h2 style="margin-bottom: 20px;">Search results for <span class="bold"><?php echo $query; ?></span>:</h2>
-					
+			
+				<?php 	
+				 $sql = "SELECT B.ID, B. Manufacturerid, B.Beerstyleid, B.Name, B.Description, B.MSRP, B.ABV, M.name FROM Beers B, Manufacturers M WHERE B.MANUFACTURERID = M.ID AND LOWER(B.NAME) LIKE" . "'%" . $query . "%'";
+				//$sql = "select * from beers where LOWER(NAME) LIKE" . "'%" . $query . "%'";
+				$stmt = oci_parse($conn, $sql);
+				oci_execute($stmt, OCI_DEFAULT);
+				
+				while($res = oci_fetch_row($stmt)) {
+					echo "<div class='well well-large'> <h2>" . $res[3] . "</h2>";
+					echo "<p> Manufacturer: " . $res[7] . "</p>";
+					echo "<p>" . $res[4] . "</p>";
+					echo "<p> ABV: " . $res[6] . "%</p>";
+					echo "<p> MSRP: $" . $res[5] . "</p>";
+					echo "</div>";
+				}
+				
+				?>
+				<!--
 					<div class="well well-large">
 						<h2>Budweiser</h2>
 					</div>
@@ -89,7 +106,9 @@
 						<h2>Delirium Tremens</h2>
 					</div>
 				</div>
+			-->
 			</div>
+			
 			<?php } else { ?>
 			<h2>Results will be displayed below</h2>
 			<?php } ?>
