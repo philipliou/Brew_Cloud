@@ -65,5 +65,6 @@
 		$_SESSION['error'] = "USERNAME NOT FOUND";
 	}
 	
+	oci_close($conn);
 	header('location: http://w4111a.cs.columbia.edu/~smp2183/');
 ?>

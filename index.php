@@ -11,6 +11,8 @@
 	}
 	
 	$_SESSION['error'] = NULL;
+
+	oci_close($conn);
 ?>
 
 <!DOCTYPE html>

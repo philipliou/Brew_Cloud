@@ -15,6 +15,8 @@
 		$email = $_SESSION['email'];
 		$name = $_SESSION['name'];
 	}
+
+	oci_close($conn);
 ?>
 
 <!DOCTYPE html>

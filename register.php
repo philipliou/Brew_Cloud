@@ -14,6 +14,11 @@
 	$firstName = $_REQUEST['firstname'];
 	$lastName = $_REQUEST['lastname'];
 	
+	if ($username == "" || $password == "" || $email == "") {
+		$_SESSION['error'] = "PLEASE FILL IN ALL REQUIRED FIELDS";
+	}
+	else {
+	
 	$stmt1 = oci_parse($conn, "select username, email from adminusers where username = '".$username."' or email = '".$email."'");
 	$stmt2 = oci_parse($conn, "select username, email from resellerusers where username = '".$username."' or email = '".$email."'");
 	$stmt3 = oci_parse($conn, "select username, email from manufacturerusers where username = '".$username."' or email = '".$email."'");
@@ -96,6 +101,9 @@
 		else {
 			$_SESSION['error'] = "USERNAME OR EMAIL ALREADY EXISTS";
 		}
+	}
+	
+	oci_close($conn);
 	}
 	
 	header('location: http://w4111a.cs.columbia.edu/~smp2183/');
