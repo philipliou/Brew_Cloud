@@ -12,7 +12,7 @@
 		$query = "";
 	}
 	
-	//$_SESSION['username'] = "Indiana";
+	$error = NULL;
 ?>
 
 <!DOCTYPE html>

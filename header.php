@@ -7,7 +7,7 @@
 			<ul>
 				<?php if (is_logged_in()) {
 					echo '<li><a href="logout.php">LOGOUT</a></li>';
-					echo "<li>".strtoupper($_SESSION['username'])."</li>";
+					echo '<li><a href="profile.php">'.strtoupper($_SESSION['username']).'</a></li>';
 				}
 				else { ?>
 					<li><a href="#loginModal" role="button" data-toggle="modal">LOGIN</a></li>

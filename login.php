@@ -7,10 +7,10 @@
 	$username = strtolower($_REQUEST['username']);
 	$password = $_REQUEST['password'];
 	
-	$stmt1 = oci_parse($conn, "select username, password from adminusers where username = '".$username."'");
-	$stmt2 = oci_parse($conn, "select username, password from resellerusers where username = '".$username."'");
-	$stmt3 = oci_parse($conn, "select username, password from manufacturerusers where username = '".$username."'");
-	$stmt4 = oci_parse($conn, "select username, password from endusers where username = '".$username."'");
+	$stmt1 = oci_parse($conn, "select username, password, email, firstname, lastname from adminusers where username = '".$username."'");
+	$stmt2 = oci_parse($conn, "select username, password, email, firstname, lastname from resellerusers where username = '".$username."'");
+	$stmt3 = oci_parse($conn, "select username, password, email, firstname, lastname from manufacturerusers where username = '".$username."'");
+	$stmt4 = oci_parse($conn, "select username, password, email, firstname, lastname from endusers where username = '".$username."'");
 	
 	oci_execute($stmt1, OCI_DEFAULT);
 	$res1 = oci_fetch_row($stmt1);
@@ -24,6 +24,8 @@
 	if ($res1) {
 		if ($res1[1] == $password) {
 			$_SESSION['username'] = $username;
+			$_SESSION['email'] = $res1[2];
+			$_SESSION['name'] = $res1[3]." ".$res1[4];
 		}
 		else {
 			$_SESSION['error'] = "PASSWORD INCORRECT";
@@ -32,6 +34,8 @@
 	else if ($res2) {
 		if ($res2[1] == $password) {
 			$_SESSION['username'] = $username;
+			$_SESSION['email'] = $res2[2];
+			$_SESSION['name'] = $res2[3]." ".$res2[4];
 		}
 		else {
 			$_SESSION['error'] = "PASSWORD INCORRECT";
@@ -40,6 +44,8 @@
 	else if ($res3) {
 		if ($res3[1] == $password) {
 			$_SESSION['username'] = $username;
+			$_SESSION['email'] = $res3[2];
+			$_SESSION['name'] = $res3[3]." ".$res3[4];
 		}
 		else {
 			$_SESSION['error'] = "PASSWORD INCORRECT";
@@ -48,6 +54,8 @@
 	else if ($res4) {
 		if ($res4[1] == $password) {
 			$_SESSION['username'] = $username;
+			$_SESSION['email'] = $res4[2];
+			$_SESSION['name'] = $res4[3]." ".$res4[4];
 		}
 		else {
 			$_SESSION['error'] = "PASSWORD INCORRECT";
