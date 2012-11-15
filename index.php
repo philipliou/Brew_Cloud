@@ -2,7 +2,15 @@
 	session_start();
 	
 	$pageName = "index";
-	require("config.php");
+	require_once("config.php");
+	require_once("utility.php");
+	
+	$error = NULL;
+	if (isset($_SESSION['error'])) {
+		$error = $_SESSION['error'];
+	}
+	
+	$_SESSION['error'] = NULL;
 ?>
 
 <!DOCTYPE html>

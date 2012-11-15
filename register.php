@@ -2,7 +2,8 @@
 	session_start();
 	
 	$pageName = "register";
-	require("config.php");
+	require_once("config.php");
+	require_once("utility.php");
 ?>
 
 <!DOCTYPE html>

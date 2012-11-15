@@ -1,6 +1,16 @@
 <div class="row">
 	<div class="span4">
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula facilisis eros eget tristique. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat aliquet augue at feugiat. Mauris semper venenatis euismod. Donec cursus tellus at mauris commodo tincidunt. Aenean rutrum nisl eget tortor ullamcorper venenatis.</p>
+		<p>
+		<?php
+			$stmt = oci_parse($conn, "select username from manufacturerusers");
+			oci_execute($stmt, OCI_DEFAULT);
+			while ($res = oci_fetch_row($stmt))
+			{
+				echo "User Name: ".$res[0]."<br />";
+			}
+			oci_close($conn);
+		?>
+		</p>
 	</div>
 	<div class="span4">
 		<p>Cras quis mi turpis. Donec nisi leo, dapibus at tincidunt in, tincidunt at dui. Morbi consectetur suscipit suscipit. Nullam tincidunt risus nec nulla hendrerit tempor. Proin augue quam, mattis sit amet porttitor vel, hendrerit ut urna. Auris vitae tristique. In nibh elit, convallis eu pellentesque rutrum, tincidunt et ante. Phasellus quis nisi velit. In a dui ante.</p>

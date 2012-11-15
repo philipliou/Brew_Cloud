@@ -5,8 +5,17 @@
 		</div>
 		<div class="right">
 			<ul>
-				<li><a href="#loginModal" role="button" data-toggle="modal">LOGIN</a></li>
-				<li><a href="#registerModal" role="button" data-toggle="modal">REGISTER</a></li>
+				<?php if (is_logged_in()) {
+					echo '<li><a href="logout.php">LOGOUT</a></li>';
+					echo "<li>".strtoupper($_SESSION['username'])."</li>";
+				}
+				else { ?>
+					<li><a href="#loginModal" role="button" data-toggle="modal">LOGIN</a></li>
+					<li><a href="#registerModal" role="button" data-toggle="modal">REGISTER</a></li>
+					<?php if ($error) {
+						echo "<li class='orange'>".$error."</li>";
+					} ?>
+				<?php } ?>
 			</ul>
 		</div>
 	</div>

@@ -2,7 +2,8 @@
 	session_start();
 	
 	$pageName = "index";
-	require("config.php");
+	require_once("config.php");
+	require_once("utility.php");
 	
 	if (isset($_GET["query"])) {
 		$query = $_GET["query"];
@@ -10,6 +11,8 @@
 	else {
 		$query = "";
 	}
+	
+	//$_SESSION['username'] = "Indiana";
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +48,7 @@
 					<h2>Filters</h2>
 				</div>
 				<div class="span10">
-					<h2 style="margin-bottom: 20px;">Search results for <span class="bold italic"><?php echo $query; ?></span>:</h2>
+					<h2 style="margin-bottom: 20px;">Search results for <span class="bold"><?php echo $query; ?></span>:</h2>
 					
 					<div class="well well-large">
 						<h2>Budweiser</h2>
