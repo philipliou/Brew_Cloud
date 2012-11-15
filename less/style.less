@@ -125,7 +125,7 @@ body
 }
 
 a { color: @font-color; text-decoration: none; }
-a:hover, a:focus { color: @brown; text-decoration: none; }
+a:hover, a:focus { color: @font-color; text-decoration: none; }
 
 h1, h2, h3
 {
@@ -261,6 +261,8 @@ header a:hover, header a:focus, header a:visited, header a:active { color: @font
 	-webkit-transition: background-color 0.5s; /* Safari and Chrome */
 	-o-transition: background-color 0.5s; /* Opera */
 }
+
+.well a:hover, .well a:focus { color: @font-color; }
 
 /*******************************************/
 /***************** FOOTER ******************/

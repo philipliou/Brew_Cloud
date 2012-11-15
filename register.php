@@ -14,6 +14,13 @@
 	$firstName = $_REQUEST['firstname'];
 	$lastName = $_REQUEST['lastname'];
 	
+	$username = filter_var($username, FILTER_SANITIZE_SPECIAL_CHARS);
+	$password = filter_var($password, FILTER_SANITIZE_SPECIAL_CHARS);
+	$email = filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
+	$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+	$firstName = filter_var($firstName, FILTER_SANITIZE_SPECIAL_CHARS);
+	$lastName = filter_var($lastName, FILTER_SANITIZE_SPECIAL_CHARS);
+	
 	if ($username == "" || $password == "" || $email == "") {
 		$_SESSION['error'] = "PLEASE FILL IN ALL REQUIRED FIELDS";
 	}

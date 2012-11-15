@@ -6,6 +6,8 @@
 	
 	$username = strtolower($_REQUEST['username']);
 	$password = $_REQUEST['password'];
+	$username = filter_var($username, FILTER_SANITIZE_SPECIAL_CHARS);
+	$password = filter_var($password, FILTER_SANITIZE_SPECIAL_CHARS);
 	
 	$stmt1 = oci_parse($conn, "select username, password, email, firstname, lastname from adminusers where username = '".$username."'");
 	$stmt2 = oci_parse($conn, "select username, password, email, firstname, lastname from resellerusers where username = '".$username."'");

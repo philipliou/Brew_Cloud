@@ -221,7 +221,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #b99550;
+  color: #282828;
   text-decoration: none;
 }
 h1,
@@ -371,6 +371,10 @@ header a:active {
   -o-transition: background-color 0.5s;
   /* Opera */
 
+}
+.well a:hover,
+.well a:focus {
+  color: #282828;
 }
 /*******************************************/
 /***************** FOOTER ******************/

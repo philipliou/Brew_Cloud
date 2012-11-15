@@ -16,6 +16,11 @@
 		</p>
 	</div>
 	<div class="span4">
+		<?php
+		$cool = "<script>console.log('hello');</script>";
+		$cool = filter_var($cool, FILTER_SANITIZE_SPECIAL_CHARS);
+		echo $cool."<br />";
+		?>
 		<p>Cras quis mi turpis. Donec nisi leo, dapibus at tincidunt in, tincidunt at dui. Morbi consectetur suscipit suscipit. Nullam tincidunt risus nec nulla hendrerit tempor. Proin augue quam, mattis sit amet porttitor vel, hendrerit ut urna. Auris vitae tristique. In nibh elit, convallis eu pellentesque rutrum, tincidunt et ante. Phasellus quis nisi velit. In a dui ante.</p>
 	</div>
 	<div class="span4">
