@@ -69,11 +69,13 @@
 					?>
 				</div>
 				<div class="span2">
-					<div class="well">
-						<?php
-						echo "<h2>MSRP: $".$beerMSRP."</h2>";
-						echo "<h2>ABV: ".$beerABV."</h2>";
-						?>
+					<div class="img-polaroid">
+						<div class="inner-polaroid">
+							<?php
+							echo "<h2>MSRP: $".$beerMSRP."</h2>";
+							echo "<h2>ABV: ".$beerABV."</h2>";
+							?>
+						</div>
 					</div>
 				</div>
 			</div>

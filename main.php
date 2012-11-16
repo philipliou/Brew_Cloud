@@ -1,46 +1,128 @@
-<div class="row">
-	<div class="span4">
-		<p>
-		<?php
-			ini_set('display_errors', 'On');
-			$db = "w4111b.cs.columbia.edu:1521/adb";
-			$conn = oci_connect("smp2183", "philsteve", $db);
-			$stmt = oci_parse($conn, "select username from manufacturerusers");
-			oci_execute($stmt, OCI_DEFAULT);
-			while ($res = oci_fetch_row($stmt))
-			{
-				echo "User Name: ".$res[0]."<br />";
-			}
-			oci_close($conn);
-		?>
-		</p>
-	</div>
-	<div class="span4">
-		<?php
-		$cool = "<script>console.log('hello');</script>";
-		$cool = filter_var($cool, FILTER_SANITIZE_SPECIAL_CHARS);
-		echo $cool."<br />";
-		?>
-		<p>Cras quis mi turpis. Donec nisi leo, dapibus at tincidunt in, tincidunt at dui. Morbi consectetur suscipit suscipit. Nullam tincidunt risus nec nulla hendrerit tempor. Proin augue quam, mattis sit amet porttitor vel, hendrerit ut urna. Auris vitae tristique. In nibh elit, convallis eu pellentesque rutrum, tincidunt et ante. Phasellus quis nisi velit. In a dui ante.</p>
-	</div>
-	<div class="span4">
-		<p>Morbi id turpis ac odio consectetur dignissim. Nullam eu urna quis dolor tincidunt molestie. Duis dignissim commodo lacus nec accumsan. Nam ut ipsum orci. Aenean molestie aliquet metus, a blandit mauris ornare nec. Etiam vitae enim vitae sem tincidunt fermentum.</p>
+<div class="row" style="margin-top: 8px;">
+	<div class="span12">
+		<div class="hero-unit">
+			<h1>BrewCloud</h1>
+			<p style="margin-left: 3px;">Beer knowledge, reviews, and availability gone social.</p>
+		</div>
 	</div>
 </div>
 
-<div style="background-color: #CCC; height: 1px; margin: 8px 0 8px 0;"></div>
-
 <div class="row">
-	<div class="span2">
-		<p>Nulla et odio at augue bibendum aliquet sed quis ante. Vestibulum pellentesque varius libero, vitae mattis nulla tincidunt sed. Quisque lobortis neque sed turpis malesuada volutpat. Nulla vulputate, eros vel laoreet mattis,</p>
-		<p>Nulla et odio at augue bibendum aliquet sed quis ante. Vestibulum pellentesque varius libero, vitae mattis nulla tincidunt sed. Quisque lobortis neque sed turpis malesuada volutpat. Nulla vulputate, eros vel laoreet mattis,</p>
+	<div class="span4">
+		<h1 class="font-thin">Top Wheat</h2>
+		<table class="table table-striped">
+			<thead>
+            	<tr>
+					<th>#</th>
+					<th>Beer</th>
+					<th>Rating</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Coors Light</td>
+					<td>90</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Budweiser</td>
+					<td>87</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Brooklyn Lager</td>
+					<td>85</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>California Blonde Ale</td>
+					<td>80</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Amber Ale</td>
+					<td>79</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-	<div class="span5">
-		<p>Aliquam et enim in ligula sollicitudin ullamcorper eu eget metus. Aliquam tristique, enim in dapibus malesuada, eros metus luctus eros, et faucibus arcu lacus non nisi. Vestibulum vitae mi at felis euismod lacinia. Sed ut neque velit. Cras lobortis congue elit, viverra tempus turpis bibendum a. Mauris condimentum posuere scelerisque. Proin elementum justo et ante congue eget rhoncus dui ornare. Vestibulum commodo tellus vitae velit consectetur sodales. Mauris sit amet lacus nec leo iaculis interdum.</p>
-		<p>Aliquam et enim in ligula sollicitudin ullamcorper eu eget metus. Aliquam tristique, enim in dapibus malesuada, eros metus luctus eros, et faucibus arcu lacus non nisi. Vestibulum vitae mi at felis euismod lacinia. Sed ut neque velit. Cras lobortis congue elit, viverra tempus turpis bibendum a. Mauris condimentum posuere scelerisque. Proin elementum justo et ante congue eget rhoncus dui ornare. Vestibulum commodo tellus vitae velit consectetur sodales. Mauris sit amet lacus nec leo iaculis interdum.</p>
+	<div class="span4">
+		<h1 class="font-thin">Top IPA</h1>
+		<table class="table table-striped">
+			<thead>
+            	<tr>
+					<th>#</th>
+					<th>Beer</th>
+					<th>Rating</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Coors Light</td>
+					<td>90</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Budweiser</td>
+					<td>87</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Brooklyn Lager</td>
+					<td>85</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>California Blonde Ale</td>
+					<td>80</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Amber Ale</td>
+					<td>79</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-	<div class="span5">
-		<p>Aliquam et enim in ligula sollicitudin ullamcorper eu eget metus. Aliquam tristique, enim in dapibus malesuada, eros metus luctus eros, et faucibus arcu lacus non nisi. Vestibulum vitae mi at felis euismod lacinia. Sed ut neque velit. Cras lobortis congue elit, viverra tempus turpis bibendum a. Mauris condimentum posuere scelerisque. Proin elementum justo et ante congue eget rhoncus dui ornare. Vestibulum commodo tellus vitae velit consectetur sodales. Mauris sit amet lacus nec leo iaculis interdum.</p>
-		<p>Aliquam et enim in ligula sollicitudin ullamcorper eu eget metus. Aliquam tristique, enim in dapibus malesuada, eros metus luctus eros, et faucibus arcu lacus non nisi. Vestibulum vitae mi at felis euismod lacinia. Sed ut neque velit. Cras lobortis congue elit, viverra tempus turpis bibendum a. Mauris condimentum posuere scelerisque. Proin elementum justo et ante congue eget rhoncus dui ornare. Vestibulum commodo tellus vitae velit consectetur sodales. Mauris sit amet lacus nec leo iaculis interdum.</p>
+	<div class="span4">
+		<h1 class="font-thin">Top American Ale</h1>
+		<table class="table table-striped">
+			<thead>
+            	<tr>
+					<th>#</th>
+					<th>Beer</th>
+					<th>Rating</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Coors Light</td>
+					<td>90</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Budweiser</td>
+					<td>87</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Brooklyn Lager</td>
+					<td>85</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>California Blonde Ale</td>
+					<td>80</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Amber Ale</td>
+					<td>79</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
