@@ -395,6 +395,40 @@ footer {
   height: 36px;
   padding-top: 4px;
 }
+footer ul li {
+  float: right;
+  line-height: 28px;
+  margin-left: 18px;
+  margin-right: 2px;
+}
+footer a {
+  color: #e5e5e5;
+  outline: none;
+  padding: 0 2px 2px 2px;
+}
+footer ul li a {
+  border-bottom: 1px solid #48484f;
+}
+footer a:hover {
+  border-bottom-color: #e5e5e5;
+  transition: border-bottom-color 0.2s;
+  -moz-transition: border-bottom-color 0.2s;
+  /* Firefox 4 */
+
+  -webkit-transition: border-bottom-color 0.2s;
+  /* Safari and Chrome */
+
+  -o-transition: border-bottom-color 0.2s;
+  /* Opera */
+
+}
+footer a:hover,
+header a:focus,
+header a:visited,
+header a:active {
+  color: #e5e5e5;
+  outline: none;
+}
 .push {
   height: 40px;
 }
