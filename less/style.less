@@ -286,4 +286,32 @@ footer
 	padding-top: 4px;
 }
 
+footer ul li {
+	float: right;
+	line-height: 28px;
+	margin-left: 18px;
+	margin-right: 2px;
+}
+
+footer a
+{
+	color: @font-header;
+	outline: none;
+	padding: 0 2px 2px 2px;
+}
+
+footer ul li a { border-bottom: 1px solid @background-footer; }
+
+footer a:hover
+{
+	border-bottom-color: @font-header;
+	
+	transition: border-bottom-color 0.2s;
+	-moz-transition: border-bottom-color 0.2s; /* Firefox 4 */
+	-webkit-transition: border-bottom-color 0.2s; /* Safari and Chrome */
+	-o-transition: border-bottom-color 0.2s; /* Opera */
+}
+
+footer a:hover, header a:focus, header a:visited, header a:active { color: @font-header; outline: none; }
+
 .push { height: 40px; }
