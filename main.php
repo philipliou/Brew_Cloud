@@ -10,7 +10,7 @@
 <div class="row">
 	<div class="span4">
 		<h1 class="font-thin">Top Wheat</h2>
-		<table class="table table-striped">
+		<table class="table table-striped table-hover">
 			<thead>
             	<tr>
 					<th>#</th>
@@ -49,7 +49,7 @@
 	</div>
 	<div class="span4">
 		<h1 class="font-thin">Top IPA</h1>
-		<table class="table table-striped">
+		<table class="table table-striped table-hover">
 			<thead>
             	<tr>
 					<th>#</th>
@@ -88,7 +88,7 @@
 	</div>
 	<div class="span4">
 		<h1 class="font-thin">Top American Ale</h1>
-		<table class="table table-striped">
+		<table class="table table-striped table-hover">
 			<thead>
             	<tr>
 					<th>#</th>
