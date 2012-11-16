@@ -40,6 +40,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="scripts/jquery.placeholder.min.js" type="text/javascript"></script>
 	<script src="scripts/bootstrap.min.js" type="text/javascript"></script>
+	<script src="scripts/beer-review.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -63,10 +64,21 @@
 					<img src="img/beer-image.png" alt="beer image" class="img-polaroid">
 				</div>
 				<div class="span8">
+					<div>
 					<?php
 					echo "<h1>".$beerName."</h1>";
 					echo "<h2>".$beerDescription."<h2>";
 					?>
+					</div>
+					<div class="reviews">
+						<h1 style="float: left;">Reviews</h1>
+						<button id="show-review" class="btn btn-small btn-warning">Post Review</button>
+						<div style="clear: both"></div>
+						<div id="review-input">
+							<textarea placeholder="Write your thoughts here"></textarea>
+							<button id="submit-review" class="btn btn-small btn-warning">Submit Review</button>
+						</div>
+					</div>
 				</div>
 				<div class="span2">
 					<div class="img-polaroid">
