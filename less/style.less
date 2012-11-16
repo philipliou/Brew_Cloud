@@ -157,7 +157,7 @@ p { line-height: inherit; padding: 4px 0 4px 0; }
 
 .inner-polaroid
 {
-	background-color: #EDEDF0;
+	background-color: none;
 	height: 100%;
 	margin: 0;
 	padding: 2px 6px 2px 6px;
@@ -170,6 +170,7 @@ p { line-height: inherit; padding: 4px 0 4px 0; }
 
 .left { float: left; }
 .right { float: right; }
+
 
 /*******************************************/
 /***************** HEADER ******************/
@@ -261,15 +262,31 @@ header a:hover, header a:focus, header a:visited, header a:active { color: @font
 	width: 100%;
 }
 
+.well { background-color: @beer-light; border-color: @beer-bold; }
+
 .well:hover
 {
-	background-color: #EEE;
+	background-color: @beer-highlight;
 	cursor: pointer;
 	
-	transition: background-color 0.5s;
-	-moz-transition: background-color 0.5s; /* Firefox 4 */
-	-webkit-transition: background-color 0.5s; /* Safari and Chrome */
-	-o-transition: background-color 0.5s; /* Opera */
+	transition: background-color 0.2s;
+	-moz-transition: background-color 0.2s; /* Firefox 4 */
+	-webkit-transition: background-color 0.2s; /* Safari and Chrome */
+	-o-transition: background-color 0.2s; /* Opera */
+}
+
+.hero-unit { background-color: @beer-bold; }
+
+.table { font-size: 14px; }
+
+.table-striped tbody tr:nth-child(odd) td,
+.table-striped tbody tr:nth-child(odd) th {
+  background-color: #f2db96;
+}
+
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+  background-color: #efd381;
 }
 
 .well a:hover, .well a:focus { color: @font-color; }

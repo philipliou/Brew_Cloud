@@ -2,6 +2,7 @@
 /************* COLOR SCHEME ****************/
 /*******************************************/
 /* iPod Nano Color Scheme */
+/* Beer Colors */
 /*******************************************/
 /*************** CSS RESET *****************/
 /*******************************************/
@@ -259,7 +260,7 @@ p {
   padding-bottom: 8px;
 }
 .inner-polaroid {
-  background-color: #EDEDF0;
+  background-color: none;
   height: 100%;
   margin: 0;
   padding: 2px 6px 2px 6px;
@@ -368,19 +369,37 @@ header a:active {
   margin-top: 11px;
   width: 100%;
 }
+.well {
+  background-color: #f3dea0;
+  border-color: #d2ad3d;
+}
 .well:hover {
-  background-color: #EEE;
+  background-color: #eac556;
   cursor: pointer;
-  transition: background-color 0.5s;
-  -moz-transition: background-color 0.5s;
+  transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
   /* Firefox 4 */
 
-  -webkit-transition: background-color 0.5s;
+  -webkit-transition: background-color 0.2s;
   /* Safari and Chrome */
 
-  -o-transition: background-color 0.5s;
+  -o-transition: background-color 0.2s;
   /* Opera */
 
+}
+.hero-unit {
+  background-color: #d2ad3d;
+}
+.table {
+  font-size: 14px;
+}
+.table-striped tbody tr:nth-child(odd) td,
+.table-striped tbody tr:nth-child(odd) th {
+  background-color: #f2db96;
+}
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+  background-color: #efd381;
 }
 .well a:hover,
 .well a:focus {
