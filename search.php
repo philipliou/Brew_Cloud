@@ -72,14 +72,14 @@ GROUP BY B.id, B.name, B.description, B.ABV, B.MSRP, S.name, M.name ORDER BY B.n
 				oci_execute($stmt, OCI_DEFAULT); 
 				while($res = oci_fetch_row($stmt)) {
 					echo "<a href='beer.php?id=" . urlencode($res[1]) . "'>";
-					echo "<div class='well well-large clearfix'><div class='span7'>";
+					echo "<div class='well well-large clearfix'><div class='span6'>";
 					echo "<h2><span class='bold'>" . $res[0] . ". " . $res[2] . "</span></h2>";
 					echo "<p>" . $res[3] . "</p>";
 					echo "<p> Manufacturer: " . $res[7] . "</p>";
 					echo "<p> Beer Style: " . $res[6] . "</p>";
 					echo "<p> ABV: " . $res[4] . "%</p>";
 					echo "<p> MSRP: $" . $res[5] . "</p></div>";
-					echo "<div class='span2 pull-right'>";
+					echo "<div class='pull-right'>";
 						echo"<h1>" . $res[9] . "</h1>";
 						echo "<p>" . $res[8] . " reviews</p>";
 					echo "</div>";
