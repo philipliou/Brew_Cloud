@@ -118,8 +118,6 @@
 							if ($count == 0) {
 								echo "<h2>Be the first to review this beer</h2>";
 							}
-
-							oci_close($conn);
 						?>
 					</div>
 				</div>
@@ -127,8 +125,35 @@
 					<div class="img-polaroid">
 						<div class="inner-polaroid">
 							<?php
+							$sql = "SELECT AVG(R.rating), COUNT(*) FROM Reviews R WHERE R.beerid = ".$id;
+							$stmt = oci_parse($conn, $sql);
+							oci_execute($stmt, OCI_DEFAULT);
+							
+							if ($res = oci_fetch_row($stmt)) {
+								if ($res[1] > 0) {
+									echo '<h1 style="font-size: 48px; margin-top: 16px; margin-bottom: 12px;">'.number_format($res[0], 2).'</h1>';
+								}
+							}
+
+							oci_close($conn);
+							
+							if ($res[1] > 0) {
+								echo '<div style="margin-left: 2px;">';
+								if ($res[1] == 1) {
+									echo "<p>".$res[1]." Review</p>";
+								}
+								else {
+									echo "<p>".$res[1]." Reviews</p>";
+								}
+							}
+							else {
+								echo '<h1 style="font-size: 48px; margin-top: 16px; margin-bottom: 12px;">NR</h1>';
+								echo '<div style="margin-left: 2px;">';
+								echo "<p>No Reviews</p>";
+							}
 							echo "<h2>MSRP: $".$beerMSRP."</h2>";
-							echo "<h2>ABV: ".$beerABV."</h2>";
+							echo "<h2>ABV: ".$beerABV."%</h2>";
+							echo "</div>";
 							?>
 						</div>
 					</div>
