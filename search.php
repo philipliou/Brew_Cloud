@@ -62,27 +62,29 @@
 							?>
 						</span> search results for <span class="bold"><?php echo $query; ?></span>:</h2> 
 					<div> Sort by Beer Name Number of Reviews </div>
-				<?php 	
-				 //$sql = "SELECT ROWNUM, B.ID, B. Manufacturerid, B.Beerstyleid, B.Name, B.Description, B.MSRP, B.ABV, M.name FROM Beers B, Manufacturers M WHERE B.MANUFACTURERID = M.ID AND LOWER(B.NAME) LIKE" . "'%" . $query . "%'";
-				$sql = "SELECT B.id, B.name AS beer_name, B.description, B.abv, B.msrp, S.name AS style_name, M.name AS manufacturer_name, COUNT (*) as total_reviews, AVG(rating) as avg_rating
+				<?php 
+				$sql = "SELECT ROWNUM, beer_id, beer_name, beer_description, abv, msrp, style_name, manufacturer_name, total_reviews, avg_rating FROM(
+SELECT B.id AS beer_id, B.name AS beer_name, B.description AS beer_description, B.abv, B.msrp, S.name AS style_name, M.name AS manufacturer_name, COUNT (*) as total_reviews, AVG(rating) as avg_rating
 FROM Beers B LEFT OUTER JOIN Reviews R on B.id = R.beerid, Beerstyles S, Manufacturers M, (SELECT * FROM BEERS B WHERE CATSEARCH(B.name, '(" . $query . ")', null) >0) TEMP
 WHERE B.Manufacturerid = M.id AND B.beerstyleid = S.id AND B.id = TEMP.id
-GROUP BY B.id, B.name, B.description, B.ABV, B.MSRP, S.name, M.name";
+GROUP BY B.id, B.name, B.description, B.ABV, B.MSRP, S.name, M.name ORDER BY B.name)";
 				$stmt = oci_parse($conn, $sql);
 				oci_execute($stmt, OCI_DEFAULT); 
 				while($res = oci_fetch_row($stmt)) {
-					echo "<a href='beer.php?id=" . urlencode($res[0]) . "'>";
-					echo "<div class='well well-large'> <h2>" . $res[0] . ". " . $res[1] . "</h2>";
-					echo "<p>" . $res[2] . "</p>";
-					echo "<p> Manufacturer: " . $res[6] . "</p>";
-					echo "<p> Beer Style: " . $res[5] . "</p>";
-					echo "<p> ABV: " . $res[3] . "%</p>";
-					echo "<p> MSRP: $" . $res[4] . "</p>";
-					echo "<p> Total Reviews: " . $res[7] . "</p>";
-					echo "<p> Average Rating: " . $res[8] . "</p>";
+					echo "<a href='beer.php?id=" . urlencode($res[1]) . "'>";
+					echo "<div class='well well-large clearfix'><div class='span7'>";
+					echo "<h2><span class='bold'>" . $res[0] . ". " . $res[2] . "</span></h2>";
+					echo "<p>" . $res[3] . "</p>";
+					echo "<p> Manufacturer: " . $res[7] . "</p>";
+					echo "<p> Beer Style: " . $res[6] . "</p>";
+					echo "<p> ABV: " . $res[4] . "%</p>";
+					echo "<p> MSRP: $" . $res[5] . "</p></div>";
+					echo "<div class='span2 pull-right'>";
+						echo"<h1>" . $res[9] . "</h1>";
+						echo "<p>" . $res[8] . " reviews</p>";
+					echo "</div>";
 					echo "</div></a>";
 				}
-				
 				?>
 				
 				</div>
