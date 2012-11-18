@@ -16,7 +16,7 @@
 	$id = NULL;
 	if (isset($_REQUEST['id'])) {
 		$id = $_REQUEST['id'];
-		$stmt = oci_parse($conn, "select name, description, msrp, abv from beers where id = ".$id);
+		$stmt = oci_parse($conn, "select B.name, B.description, B.msrp, B.abv, M.name from beers B, manufacturers M where B.manufacturerid = M.id and B.id = ".$id);
 		
 		oci_execute($stmt, OCI_DEFAULT);
 		$res = oci_fetch_row($stmt);
@@ -25,11 +25,23 @@
 		$beerDescription = $res[1];
 		$beerMSRP = $res[2];
 		$beerABV = $res[3];
+		$manufacturer = $res[4];
 	}
 	
+	$postedReview = FALSE;
 	$blank = NULL;
 	
 	include("review.php");
+	
+	if (is_logged_in()) {
+		$userid = $_SESSION['id'];
+		$stmt = oci_parse($conn, "select R.userid from reviews R where R.userid = ".$userid." AND R.beerid = ".$id);
+		
+		oci_execute($stmt, OCI_DEFAULT);
+		if ($res = oci_fetch_row($stmt)) {
+			$postedReview = TRUE;
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +67,7 @@
 				<div class="span12" style="text-align: center;">
 					<form action="search.php" method="GET">
 						<input class="search-box" type="text" name="query" placeholder="Search for beers or breweries" style="height: 36px; font-size: 16px; margin: 10px 0 16px 0; padding-left: 1%; padding-right: 1%;"></input>
+						<input type="hidden" name="sort_by" value="default"></input>
 					</form>
 				</div>
 			</div>
@@ -68,13 +81,14 @@
 				<div class="span8">
 					<div>
 					<?php
-					echo "<h1>".$beerName."</h1>";
-					echo "<h2>".$beerDescription."<h2>";
+					echo '<h1 style="margin-bottom: 2px;">'.$beerName.'</h1>';
+					echo '<p style="margin-left: 1px; margin-top: 0;">'.$manufacturer.'</p>';
+					echo '<h2 style="margin-left: 1px;">'.$beerDescription.'<h2>';
 					?>
 					</div>
 					<div class="reviews">
 						<h1 style="float: left;">Reviews</h1>
-						<?php if (is_logged_in()) { ?>
+						<?php if (is_logged_in() && !($postedReview)) { ?>
 							<button id="show-review" class="btn btn-small btn-warning">Post Review</button>
 						<?php } ?>
 						<div style="clear: both; height: 16px;"></div>
@@ -134,8 +148,6 @@
 									echo '<h1 style="font-size: 48px; margin-top: 16px; margin-bottom: 12px;">'.number_format($res[0], 2).'</h1>';
 								}
 							}
-
-							oci_close($conn);
 							
 							if ($res[1] > 0) {
 								echo '<div style="margin-left: 2px;">';
@@ -151,8 +163,20 @@
 								echo '<div style="margin-left: 2px;">';
 								echo "<p>No Reviews</p>";
 							}
-							echo "<h2>MSRP: $".$beerMSRP."</h2>";
-							echo "<h2>ABV: ".$beerABV."%</h2>";
+							
+							$sql = "SELECT BS.description FROM Beers B, BeerStyles BS WHERE B.beerstyleid = BS.id AND B.id = ".$id;
+							$stmt = oci_parse($conn, $sql);
+							oci_execute($stmt, OCI_DEFAULT);
+							
+							if ($res = oci_fetch_row($stmt)) {
+								$beerStyle = $res[0];
+								echo '<h2><span class="bold">Style:</span> '.$beerStyle.'</h2>';
+							}
+
+							oci_close($conn);
+
+							echo '<h2><span class="bold">MSRP:</span> $'.$beerMSRP.'</h2>';
+							echo '<h2><span class="bold">ABV:</span> '.$beerABV.'%</h2>';
 							echo "</div>";
 							?>
 						</div>

@@ -14,9 +14,8 @@
 		$username = $_SESSION['username'];
 		$email = $_SESSION['email'];
 		$name = $_SESSION['name'];
+		$id = $_SESSION['id'];
 	}
-
-	oci_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -41,17 +40,50 @@
 				<div class="span12" style="text-align: center;">
 					<form action="search.php" method="GET">
 						<input class="search-box" type="text" name="query" placeholder="Search for beers or breweries" style="height: 36px; font-size: 16px; margin: 10px 0 16px 0; padding-left: 1%; padding-right: 1%;"></input>
+						<input type="hidden" name="sort_by" value="default"></input>
 					</form>
 				</div>
 			</div>
 			
 			<!-- page content -->
-			<?php if (is_logged_in()) { ?>
-				<h1><?php echo $name; ?></h1>
-				<h2><?php echo $email; ?></h2>
-			<?php } else { ?>
-				<h2>You are not currently logged in.</h2>
-			<?php } ?>
+			<div class="row">
+				<div class="span2" style="margin-top: 3px;">
+					<?php if (is_logged_in()) { ?>
+						<h1><?php echo $name; ?></h1>
+						<h2><?php echo $email; ?></h2>
+					<?php } else { ?>
+						<h2>You are not currently logged in.</h2>
+					<?php } ?>
+				</div>
+				<div class= "span10">
+					<div class="reviews" style="border: none; margin-top: 0;">
+						<h1 style="margin-top: 0;">My Reviews</h1>
+						<div style="clear: both; height: 16px;"></div>
+						
+						<?php
+							$sql = "SELECT B.id, B.name, R.rating, R.description FROM Reviews R, Beers B WHERE R.beerid = B.id AND R.userid = ".$id." ORDER BY lastupdated DESC";
+							$stmt = oci_parse($conn, $sql);
+							oci_execute($stmt, OCI_DEFAULT);
+							
+							while ($res = oci_fetch_row($stmt)) {
+								$count++;
+								echo '<div class="review-entry well">';
+								echo '<a href="beer.php?id='.$res[0].'"><p class="title">'.$res[1].'</p></a>';
+								if ($res[2] == 1) {
+									echo '<p class="rating">Rating: '.$res[2].' star</p>';
+								}
+								else {
+									echo '<p class="rating">Rating: '.$res[2].' stars</p>';
+								}
+								echo '<p>'.$res[3].'</p>';
+								echo '</div>';
+							}
+
+							oci_close($conn);
+						?>
+					</div>
+				</div>
+			</div>
 			<!-- end page content -->
 			
 		</div>

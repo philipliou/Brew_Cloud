@@ -451,6 +451,10 @@ header a:active {
 #submit-review {
   float: right;
 }
+#search-results ul li {
+  float: left;
+  margin-right: 12px;
+}
 /*******************************************/
 /***************** FOOTER ******************/
 /*******************************************/
