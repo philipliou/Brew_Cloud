@@ -9,7 +9,7 @@
 
 <div class="row">
 	<div class="span4">
-		<h1 class="font-thin">Top Wheat</h2>
+		<h1 class="font-thin">Top Brews Overall</h2>
 		<table class="table table-striped table-hover">
 			<thead>
             	<tr>
@@ -19,36 +19,30 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Coors Light</td>
-					<td>90</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Budweiser</td>
-					<td>87</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Brooklyn Lager</td>
-					<td>85</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>California Blonde Ale</td>
-					<td>80</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>Amber Ale</td>
-					<td>79</td>
-				</tr>
+			<?php
+			
+			// Top Beers
+			
+			$sql = "SELECT B.id, B.name, AVG(R.rating) FROM beers B, reviews R WHERE ROWNUM <= 10 AND B.id = R.beerid GROUP BY B.id, B.name ORDER BY AVG(R.rating) DESC";
+			$stmt = oci_parse($conn, $sql);
+			oci_execute($stmt, OCI_DEFAULT);
+			
+			$count = 0;
+			while ($res = oci_fetch_row($stmt)) {
+				++$count;
+				echo "<tr>";
+				echo "<td>".$count."</td>";
+				echo "<td>".$res[1]."</td>";
+				echo "<td>".number_format($res[2], 2)."</td>";
+				echo "</tr>";
+			}
+			
+			?>
 			</tbody>
 		</table>
 	</div>
 	<div class="span4">
-		<h1 class="font-thin">Top IPA</h1>
+		<h1 class="font-thin">Top American-Style Pale Ales</h2>
 		<table class="table table-striped table-hover">
 			<thead>
             	<tr>
@@ -58,36 +52,30 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Coors Light</td>
-					<td>90</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Budweiser</td>
-					<td>87</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Brooklyn Lager</td>
-					<td>85</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>California Blonde Ale</td>
-					<td>80</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>Amber Ale</td>
-					<td>79</td>
-				</tr>
+			<?php
+			
+			// American-Style Pale Ales
+			
+			$sql = "SELECT B.name, AVG(R.rating) AS avgrating FROM beers B, reviews R WHERE ROWNUM <= 10 AND B.id = R.beerid AND B.beerstyleid = 26 GROUP BY B.name ORDER BY avgrating DESC";
+			$stmt = oci_parse($conn, $sql);
+			oci_execute($stmt, OCI_DEFAULT);
+			
+			$count = 0;
+			while ($res = oci_fetch_row($stmt)) {
+				++$count;
+				echo "<tr>";
+				echo "<td>".$count."</td>";
+				echo "<td>".$res[0]."</td>";
+				echo "<td>".number_format($res[1], 2)."</td>";
+				echo "</tr>";
+			}
+			
+			?>
 			</tbody>
 		</table>
 	</div>
 	<div class="span4">
-		<h1 class="font-thin">Top American Ale</h1>
+		<h1 class="font-thin">Top Brews from New York</h2>
 		<table class="table table-striped table-hover">
 			<thead>
             	<tr>
@@ -97,31 +85,27 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Coors Light</td>
-					<td>90</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Budweiser</td>
-					<td>87</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Brooklyn Lager</td>
-					<td>85</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>California Blonde Ale</td>
-					<td>80</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>Amber Ale</td>
-					<td>79</td>
-				</tr>
+			<?php
+			
+			// Top Beers in New York
+			
+			$sql = "SELECT B.name, AVG(R.rating) AS avgrating FROM beers B, reviews R, manufacturers M, locations L WHERE ROWNUM <= 10 AND B.id = R.beerid AND B.manufacturerid = M.id AND M.locationid = L.id AND L.city in ('New York', 'Brooklyn', 'Queens', 'Manhattan') GROUP BY B.name ORDER BY avgrating DESC";
+			$stmt = oci_parse($conn, $sql);
+			oci_execute($stmt, OCI_DEFAULT);
+			
+			$count = 0;
+			while ($res = oci_fetch_row($stmt)) {
+				++$count;
+				echo "<tr>";
+				echo "<td>".$count."</td>";
+				echo "<td>".$res[0]."</td>";
+				echo "<td>".number_format($res[1], 2)."</td>";
+				echo "</tr>";
+			}
+
+			oci_close($conn);
+			
+			?>
 			</tbody>
 		</table>
 	</div>

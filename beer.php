@@ -101,7 +101,6 @@
 									<option value="3">3 stars</option>
 									<option value="2">2 stars</option>
 									<option value="1">1 star</option>
-									<option value="0">0 stars</option>
 								</select>
 								<textarea name="review" placeholder="Write your thoughts here"></textarea>
 								<button id="submit-review" class="btn btn-small btn-warning">Submit Review</button>
