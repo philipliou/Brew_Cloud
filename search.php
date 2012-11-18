@@ -50,25 +50,41 @@
 					<h2>Filters</h2>
 				</div>
 				<div class="span10">
-					<h2 style="margin-bottom: 20px;">Search results for <span class="bold"><?php echo $query; ?></span>:</h2> 
+					<h2 style="margin-bottom: 20px;">
+						<span class='bold'>
+							<?php 	
+							$sql = "SELECT COUNT(*) FROM Beers B WHERE CATSEARCH(B.NAME, '(" . $query . ")', NULL) >0";
+							$stmt = oci_parse($conn, $sql);
+							oci_execute($stmt, OCI_DEFAULT); 
+							while($res = oci_fetch_row($stmt)) {
+							echo $res[0];
+							}
+							?>
+						</span> search results for <span class="bold"><?php echo $query; ?></span>:</h2> 
 					<div> Sort by Beer Name Number of Reviews </div>
 				<?php 	
-				 $sql = "SELECT B.ID, B. Manufacturerid, B.Beerstyleid, B.Name, B.Description, B.MSRP, B.ABV, M.name FROM Beers B, Manufacturers M WHERE B.MANUFACTURERID = M.ID AND LOWER(B.NAME) LIKE" . "'%" . $query . "%'";
-				//$sql = "select * from beers where LOWER(NAME) LIKE" . "'%" . $query . "%'";
+				 //$sql = "SELECT ROWNUM, B.ID, B. Manufacturerid, B.Beerstyleid, B.Name, B.Description, B.MSRP, B.ABV, M.name FROM Beers B, Manufacturers M WHERE B.MANUFACTURERID = M.ID AND LOWER(B.NAME) LIKE" . "'%" . $query . "%'";
+				$sql = "SELECT B.id, B.name AS beer_name, B.description, B.abv, B.msrp, S.name AS style_name, M.name AS manufacturer_name, COUNT (*) as total_reviews, AVG(rating) as avg_rating
+FROM Beers B LEFT OUTER JOIN Reviews R on B.id = R.beerid, Beerstyles S, Manufacturers M, (SELECT * FROM BEERS B WHERE CATSEARCH(B.name, '(" . $query . ")', null) >0) TEMP
+WHERE B.Manufacturerid = M.id AND B.beerstyleid = S.id AND B.id = TEMP.id
+GROUP BY B.id, B.name, B.description, B.ABV, B.MSRP, S.name, M.name";
 				$stmt = oci_parse($conn, $sql);
-				oci_execute($stmt, OCI_DEFAULT);
-				
+				oci_execute($stmt, OCI_DEFAULT); 
 				while($res = oci_fetch_row($stmt)) {
 					echo "<a href='beer.php?id=" . urlencode($res[0]) . "'>";
-					echo "<div class='well well-large'> <h2>" . $res[3] . "</h2>";
-					echo "<p>" . $res[4] . "</p>";
-					echo "<p> Manufacturer: " . $res[7] . "</p>";
-					echo "<p> ABV: " . $res[6] . "%</p>";
-					echo "<p> MSRP: $" . $res[5] . "</p>";
+					echo "<div class='well well-large'> <h2>" . $res[0] . ". " . $res[1] . "</h2>";
+					echo "<p>" . $res[2] . "</p>";
+					echo "<p> Manufacturer: " . $res[6] . "</p>";
+					echo "<p> Beer Style: " . $res[5] . "</p>";
+					echo "<p> ABV: " . $res[3] . "%</p>";
+					echo "<p> MSRP: $" . $res[4] . "</p>";
+					echo "<p> Total Reviews: " . $res[7] . "</p>";
+					echo "<p> Average Rating: " . $res[8] . "</p>";
 					echo "</div></a>";
 				}
 				
 				?>
+				
 				</div>
 			</div>
 			
