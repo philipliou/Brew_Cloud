@@ -302,6 +302,23 @@ header a:hover, header a:focus, header a:visited, header a:active { color: @font
 	padding-top: 8px;
 }
 
+.review-entry
+{
+	margin-bottom: 12px;
+}
+
+.review-entry .title { font-weight: bold; }
+
+.reviews .well
+{
+	border: 1px solid #CCC;
+	background-color: #FFF;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.reviews .well:hover { cursor: auto; }
+
 #show-review
 {
 	float: left;
@@ -312,9 +329,15 @@ header a:hover, header a:focus, header a:visited, header a:active { color: @font
 #review-input
 {
 	display: none;
-	margin-top: 16px;
 	width: 100%;
 }
+
+#review-input select
+{
+	width: 100px;
+}
+
+#review-input select:focus { outline: none; }
 
 #review-input textarea
 {

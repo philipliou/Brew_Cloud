@@ -96,6 +96,13 @@
 			$_SESSION['username'] = $username;
 			$_SESSION['email'] = $email;
 			$_SESSION['name'] = $firstName." ".$lastName;
+			
+			$stmtUser = oci_parse($conn, "select id from endusers where username = '".$username."'");
+			oci_execute($stmtUser, OCI_DEFAULT);
+			$resUser = oci_fetch_row($stmtUser);
+			if ($resUser) {
+				$_SESSION['id'] = $resUser[0];
+			}
 		}
 	}
 	else {

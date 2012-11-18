@@ -26,8 +26,10 @@
 		$beerMSRP = $res[2];
 		$beerABV = $res[3];
 	}
-
-	oci_close($conn);
+	
+	$blank = NULL;
+	
+	include("review.php");
 ?>
 
 <!DOCTYPE html>
@@ -72,12 +74,53 @@
 					</div>
 					<div class="reviews">
 						<h1 style="float: left;">Reviews</h1>
-						<button id="show-review" class="btn btn-small btn-warning">Post Review</button>
-						<div style="clear: both"></div>
+						<?php if (is_logged_in()) { ?>
+							<button id="show-review" class="btn btn-small btn-warning">Post Review</button>
+						<?php } ?>
+						<div style="clear: both; height: 16px;"></div>
+						<?php if ($blank) { echo "<p>".$blank."</p>"; } ?>
 						<div id="review-input">
-							<textarea placeholder="Write your thoughts here"></textarea>
-							<button id="submit-review" class="btn btn-small btn-warning">Submit Review</button>
+							<form action="<?php echo getPageURL(); ?>" method="POST">
+								<select name="rating">
+									<option value="5">5 stars</option>
+									<option value="4">4 stars</option>
+									<option value="3">3 stars</option>
+									<option value="2">2 stars</option>
+									<option value="1">1 star</option>
+									<option value="0">0 stars</option>
+								</select>
+								<textarea name="review" placeholder="Write your thoughts here"></textarea>
+								<button id="submit-review" class="btn btn-small btn-warning">Submit Review</button>
+							</form>
+							<div style="clear: both; height: 16px;"></div>
 						</div>
+						
+						<?php
+							$count = 0;
+							$sql = "SELECT E.firstname, E.lastname, R.rating, R.description FROM Reviews R, Endusers E WHERE R.userid = E.id AND R.beerid = ".$id." ORDER BY lastupdated DESC";
+							$stmt = oci_parse($conn, $sql);
+							oci_execute($stmt, OCI_DEFAULT);
+							
+							while ($res = oci_fetch_row($stmt)) {
+								$count++;
+								echo '<div class="review-entry well">';
+								echo '<p class="title">'.$res[0].' '.$res[1].'</p>';
+								if ($res[2] == 1) {
+									echo '<p class="rating">Rating: '.$res[2].' star</p>';
+								}
+								else {
+									echo '<p class="rating">Rating: '.$res[2].' stars</p>';
+								}
+								echo '<p>'.$res[3].'</p>';
+								echo '</div>';
+							}
+							
+							if ($count == 0) {
+								echo "<h2>Be the first to review this beer</h2>";
+							}
+
+							oci_close($conn);
+						?>
 					</div>
 				</div>
 				<div class="span2">

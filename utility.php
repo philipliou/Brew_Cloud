@@ -15,4 +15,11 @@
 	{
 		session_destroy();
 	}
+	
+	function getPageURL()
+	{
+		$pageURL = "";
+		$pageURL .= $_SERVER["REQUEST_URI"];
+ 		return $pageURL;
+	}
 ?>
