@@ -80,8 +80,15 @@ GROUP BY B.id, B.name, B.description, B.ABV, B.MSRP, S.name, M.name ORDER BY B.n
 					echo "<p> ABV: " . $res[4] . "%</p>";
 					echo "<p> MSRP: $" . $res[5] . "</p></div>";
 					echo "<div class='pull-right'>";
-						echo"<h1>" . $res[9] . "</h1>";
+					if (is_null($res[9])) {
+						echo "<p> No reviews</p>";
+					} else if ($res[9] == 1) {
+						echo"<h1>" . $res[9] . " star</h1>";
+						echo "<p>" . $res[8] . " review</p>";
+					} else {
+						echo"<h1>" . $res[9] . " stars</h1>";
 						echo "<p>" . $res[8] . " reviews</p>";
+					}
 					echo "</div>";
 					echo "</div></a>";
 				}
