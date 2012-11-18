@@ -455,6 +455,10 @@ header a:active {
   float: left;
   margin-right: 12px;
 }
+#search-entry p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 /*******************************************/
 /***************** FOOTER ******************/
 /*******************************************/

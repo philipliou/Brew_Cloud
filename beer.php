@@ -78,7 +78,7 @@
 				<div class="span2">
 					<img src="img/beer-image.png" alt="beer image" class="img-polaroid">
 				</div>
-				<div class="span8">
+				<div class="span7">
 					<div>
 					<?php
 					echo '<h1 style="margin-bottom: 2px;">'.$beerName.'</h1>';
@@ -134,8 +134,8 @@
 						?>
 					</div>
 				</div>
-				<div class="span2">
-					<div class="img-polaroid">
+				<div class="span3">
+					<div class="img-polaroid" style='margin-bottom: 10px'>
 						<div class="inner-polaroid">
 							<?php
 							$sql = "SELECT AVG(R.rating), COUNT(*) FROM Reviews R WHERE R.beerid = ".$id;
@@ -172,12 +172,40 @@
 								echo '<h2><span class="bold">Style:</span> '.$beerStyle.'</h2>';
 							}
 
-							oci_close($conn);
-
 							echo '<h2><span class="bold">MSRP:</span> $'.$beerMSRP.'</h2>';
 							echo '<h2><span class="bold">ABV:</span> '.$beerABV.'%</h2>';
 							echo "</div>";
 							?>
+						</div>
+					</div>
+					<div class="img-polaroid">
+						<div class="inner-polaroid">
+							<h1> Available At: </h1>
+							<?php
+							$sql = 'select BARS.resellerid, R.name from beers B, bars BARS, resellers R, availability A where BARS.resellerid = R.id AND A.resellerid = R.id AND A.beerid = B.id AND B.id = 1120';
+							$stmt = oci_parse($conn, $sql);
+							oci_execute($stmt, OCI_DEFAULT);
+							echo "<h2 style='font-weight: 700;'> Bars </h3>";
+							if ($res = oci_fetch_row($stmt)) {
+								$barID = $res[0];
+								$barNAME = $res[1];
+								echo '<p>' . $barNAME . '</p>'; 
+							}
+							?>
+							<?php
+							$sql = 'SELECT RT.resellerid, R.name, S.name FROM beers B, retailstores RT, resellers R, availability A, storetypes S WHERE S.id = RT.storetypeid AND RT.resellerid = R.id AND A.resellerid = R.id AND A.beerid = B.id AND B.id = '. $id;
+							$stmt = oci_parse($conn, $sql);
+							oci_execute($stmt, OCI_DEFAULT);
+							echo "<h2 style='font-weight: 700;'> Retail Stores </h3>";
+							if ($res = oci_fetch_row($stmt)) {
+								$rtID = $res[0];
+								$rtName = $res[1];
+								$storeType = $res[2];
+								echo '<p>' . $rtName . ' (' . $storeType . ')</p>'; 
+							}
+							oci_close($conn);
+							?>
+							
 						</div>
 					</div>
 				</div>

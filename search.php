@@ -13,6 +13,13 @@
 		$query = "";
 	}
 	
+	if (isset($_GET["sort_by"])) {
+		$sort_by = strtolower($_GET["sort_by"]);
+	}
+	else {
+		$sort_by = "default";
+	}
+	
 	$error = NULL;
 
 ?>
@@ -39,6 +46,7 @@
 				<div class="span12" style="text-align: center;">
 					<form action="search.php" method="GET">
 						<input class="search-box" type="text" name="query" placeholder="Search for beers or breweries" value="<?php echo $query; ?>" style="height: 36px; font-size: 16px; margin: 10px 0 16px 0; padding-left: 1%; padding-right: 1%;"></input>
+						<input type="hidden" name="sort_by" value="default"></input>
 					</form>
 				</div>
 			</div>
@@ -46,10 +54,7 @@
 			<!-- page content -->
 			<?php if (isset($_GET["query"])) { ?>
 			<div class="row">
-				<div class="span2">
-					<h2>Filters</h2>
-				</div>
-				<div class="span10">
+				<div class="span12">
 					<h2 style="margin-bottom: 20px;">
 						<span class='bold'>
 							<?php 	
@@ -61,34 +66,74 @@
 							}
 							?>
 						</span> search results for <span class="bold"><?php echo $query; ?></span>:</h2> 
-					<div> Sort by Beer Name Number of Reviews </div>
-				<?php 
-				$sql = "SELECT ROWNUM, beer_id, beer_name, beer_description, abv, msrp, style_name, manufacturer_name, total_reviews, avg_rating FROM(
-SELECT B.id AS beer_id, B.name AS beer_name, B.description AS beer_description, B.abv, B.msrp, S.name AS style_name, M.name AS manufacturer_name, COUNT (*) as total_reviews, AVG(rating) as avg_rating
+							<div id="search-results"> 
+								<ul>
+									<li style='line-height: 26px; font-weight: 700;'>Sort by</li>
+									<li>
+										<form action= "search.php" method="GET">
+											<button type="submit" class="btn btn-small btn-warning">Name</button>
+											<input type="hidden" name="query" value="<?php echo $query ?>"></input>
+											<input type="hidden" name="sort_by" value="name"></input>
+										</form>
+									</li>
+									<li>
+										<form action= "search.php" method="GET">
+											<button type="submit" class="btn btn-small btn-warning">Rating</button>
+											<input type="hidden" name="query" value="<?php echo $query ?>"></input>
+											<input type="hidden" name="sort_by" value="rating"></input>
+										</form>
+									</li>
+									<li>	
+										<form action= "search.php" method="GET">
+											<button type="submit" class="btn btn-small btn-warning">Reviews</button>
+											<input type="hidden" name="query" value="<?php echo $query ?>"></input>
+											<input type="hidden" name="sort_by" value="reviews"></input>
+										</form>
+									</li>	
+								</ul>
+								<div style='clear: both; margin-bottom: 10px'></div>
+				    		</div>
+				<?php
+				
+				if ($sort_by == 'default') {
+					$order_by = 'B.name';
+				} else if ($sort_by == 'rating') {
+					$order_by = 'avg_rating DESC, total_reviews DESC, B.name';
+				} else if ($sort_by == 'reviews') {
+					$order_by = 'total_reviews DESC, avg_rating DESC, B.name';
+				} else if ($sort_by == 'name'){
+					$order_by = 'B.name';
+				}
+				
+				$sql = "SELECT ROWNUM, beer_id, beer_name, beer_description, abv, msrp, style_name, manufacturer_name, total_reviews, NVL(avg_rating, 0) FROM(
+SELECT B.id AS beer_id, B.name AS beer_name, B.description AS beer_description, B.abv, B.msrp, S.description AS style_name, M.name AS manufacturer_name, COUNT (*) as total_reviews, NVL(AVG(rating),0) as avg_rating
 FROM Beers B LEFT OUTER JOIN Reviews R on B.id = R.beerid, Beerstyles S, Manufacturers M, (SELECT * FROM BEERS B WHERE CATSEARCH(B.name, '(" . $query . ")', null) >0) TEMP
 WHERE B.Manufacturerid = M.id AND B.beerstyleid = S.id AND B.id = TEMP.id
-GROUP BY B.id, B.name, B.description, B.ABV, B.MSRP, S.name, M.name ORDER BY B.name)";
+GROUP BY B.id, B.name, B.description, B.ABV, B.MSRP, S.description, M.name ORDER BY " . $order_by . ")";
 				$stmt = oci_parse($conn, $sql);
 				oci_execute($stmt, OCI_DEFAULT); 
 				while($res = oci_fetch_row($stmt)) {
 					echo "<a href='beer.php?id=" . urlencode($res[1]) . "'>";
-					echo "<div class='well well-large clearfix'><div class='span6'>";
-					echo "<h2><span class='bold'>" . $res[0] . ". " . $res[2] . "</span></h2>";
+					echo "<div id='search-entry' class='well clearfix'>";
+					echo "<div class='span7' style='float: left; margin-left: 8px;'>";
+					echo "<h1>" . $res[0] . ". " . $res[2] . "</h1>";
 					echo "<p>" . $res[3] . "</p>";
-					echo "<p> Manufacturer: " . $res[7] . "</p>";
-					echo "<p> Beer Style: " . $res[6] . "</p>";
-					echo "<p> ABV: " . $res[4] . "%</p>";
-					echo "<p> MSRP: $" . $res[5] . "</p></div>";
-					echo "<div class='pull-right'>";
-					if (is_null($res[9])) {
+					echo "<p> <span class='bold'>Brewed By:</span> " . $res[7] . "</p>";
+					echo "<p> <span class='bold'>Style:</span> " . $res[6] . "</p>";
+					echo "</div>";
+					echo "<div class='span3' style='float: right; margin-right: 8px; text-align: right;'>";
+					if ($res[9] == 0) {
+						echo "<h1 style='font-size: 48px; margin-top: 12px; margin-bottom: 12px;'>NR</h1>";
 						echo "<p> No reviews</p>";
 					} else if ($res[9] == 1) {
-						echo"<h1>" . $res[9] . " star</h1>";
+						echo "<h1 style='font-size: 48px; margin-top: 12px; margin-bottom: 12px;'>" . number_format($res[9], 2) . " </h1>";
 						echo "<p>" . $res[8] . " review</p>";
 					} else {
-						echo"<h1>" . $res[9] . " stars</h1>";
+						echo"<h1 style='font-size: 48px; margin-top: 12px; margin-bottom: 12px;'>" . number_format($res[9], 2) . " </h1>";
 						echo "<p>" . $res[8] . " reviews</p>";
 					}
+					echo "<p> <span class='bold'>MSRP:</span> $" . $res[5] . "</p>";
+					echo "<p> <span class='bold'>ABV:</span> " . $res[4] . "%</p>";
 					echo "</div>";
 					echo "</div></a>";
 				}
