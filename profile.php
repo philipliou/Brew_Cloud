@@ -66,7 +66,6 @@
 							oci_execute($stmt, OCI_DEFAULT);
 							
 							while ($res = oci_fetch_row($stmt)) {
-								$count++;
 								echo '<div class="review-entry well">';
 								echo '<a href="beer.php?id='.$res[0].'"><p class="title">'.$res[1].'</p></a>';
 								if ($res[2] == 1) {

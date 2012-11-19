@@ -72,5 +72,5 @@
 	}
 	
 	oci_close($conn);
-	header('location: http://w4111a.cs.columbia.edu/~smp2183/');
+	header('location: http://w4111a.cs.columbia.edu/~smp2183/brewcloud/ps1337.php');
 ?>

@@ -1,7 +1,7 @@
 <header>
 	<div class="container">
 		<div class="left">
-			<a href="http://w4111a.cs.columbia.edu/~smp2183/"><img id="header-logo" src="img/brewcloud-logo.png" alt="brewcloud logo" /></a>
+			<a href="http://w4111a.cs.columbia.edu/~smp2183/brewcloud/ps1337.php"><img id="header-logo" src="img/brewcloud-logo.png" alt="brewcloud logo" /></a>
 		</div>
 		<div class="right">
 			<ul>
