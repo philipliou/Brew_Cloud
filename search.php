@@ -5,12 +5,10 @@
 	require_once("config.php");
 	require_once("utility.php");
 	
+	$query = NULL;
 	if (isset($_GET["query"])) {
 		$query = strtolower($_GET["query"]);
 		$query = filter_var($query, FILTER_SANITIZE_SPECIAL_CHARS);
-	}
-	else {
-		$query = "";
 	}
 	
 	if (isset($_GET["sort_by"])) {
@@ -52,7 +50,7 @@
 			</div>
 			
 			<!-- page content -->
-			<?php if (isset($_GET["query"])) { ?>
+			<?php if (isset($_GET["query"]) && $query) { ?>
 			<div class="row">
 				<div class="span12">
 					<h2 style="margin-bottom: 20px;">

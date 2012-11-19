@@ -110,14 +110,19 @@
 						
 						<?php
 							$count = 0;
-							$sql = "SELECT E.firstname, E.lastname, R.rating, R.description FROM Reviews R, Endusers E WHERE R.userid = E.id AND R.beerid = ".$id." ORDER BY lastupdated DESC";
+							$sql = "SELECT E.firstname, E.lastname, R.rating, R.description, E.username FROM Reviews R, Endusers E WHERE R.userid = E.id AND R.beerid = ".$id." ORDER BY lastupdated DESC";
 							$stmt = oci_parse($conn, $sql);
 							oci_execute($stmt, OCI_DEFAULT);
 							
 							while ($res = oci_fetch_row($stmt)) {
 								$count++;
 								echo '<div class="review-entry well">';
-								echo '<p class="title">'.$res[0].' '.$res[1].'</p>';
+								if (!$res[0]) {
+									echo '<p class="title">'.$res[4].'</p>';
+								}
+								else {
+									echo '<p class="title">'.$res[0].' '.$res[1].'</p>';
+								}
 								if ($res[2] == 1) {
 									echo '<p class="rating">Rating: '.$res[2].' star</p>';
 								}
@@ -185,23 +190,33 @@
 							$sql = 'select BARS.resellerid, R.name from beers B, bars BARS, resellers R, availability A where BARS.resellerid = R.id AND A.resellerid = R.id AND A.beerid = B.id AND B.id = 1120';
 							$stmt = oci_parse($conn, $sql);
 							oci_execute($stmt, OCI_DEFAULT);
-							echo "<h2 style='font-weight: 700;'> Bars </h3>";
+							echo "<h2 class='bold' style='margin-bottom: 4px;'> Bars </h3>";
+							$count = 0;
 							if ($res = oci_fetch_row($stmt)) {
+								$count++;
 								$barID = $res[0];
 								$barNAME = $res[1];
 								echo '<p>' . $barNAME . '</p>'; 
+							}
+							if (!$count) {
+								echo '<p>Not currently available</p>'; 
 							}
 							?>
 							<?php
 							$sql = 'SELECT RT.resellerid, R.name, S.name FROM beers B, retailstores RT, resellers R, availability A, storetypes S WHERE S.id = RT.storetypeid AND RT.resellerid = R.id AND A.resellerid = R.id AND A.beerid = B.id AND B.id = '. $id;
 							$stmt = oci_parse($conn, $sql);
 							oci_execute($stmt, OCI_DEFAULT);
-							echo "<h2 style='font-weight: 700;'> Retail Stores </h3>";
+							echo "<h2 class='bold' style='margin-bottom: 4px;'> Retail Stores </h3>";
+							$count = 0;
 							if ($res = oci_fetch_row($stmt)) {
+								$count++;
 								$rtID = $res[0];
 								$rtName = $res[1];
 								$storeType = $res[2];
 								echo '<p>' . $rtName . ' (' . $storeType . ')</p>'; 
+							}
+							if (!$count) {
+								echo '<p>Not currently available</p>'; 
 							}
 							oci_close($conn);
 							?>
