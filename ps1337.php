@@ -34,8 +34,10 @@
 			<div class="row">
 				<div class="span12" style="text-align: center;">
 					<form action="search.php" method="GET">
-						<input class="search-box" type="text" name="query" placeholder="Search for beers or breweries" style="height: 36px; font-size: 16px; margin: 10px 0 16px 0; padding-left: 1%; padding-right: 1%;"></input>
+						<input class="search-box" type="text" name="query" placeholder="Search for beers or breweries" style="height: 36px; font-size: 16px; margin: 10px 0 16px 0; padding-left: 10px; padding-right: 10px;"></input>
 						<input type="hidden" name="sort_by" value="default"></input>
+						<input type="hidden" name="rating" value="0"></input>
+						<input type="hidden" name="reviews" value="0"></input>
 					</form>
 				</div>
 			</div>

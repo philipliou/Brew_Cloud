@@ -24,6 +24,9 @@
 	if ($username == "" || $password == "" || $email == "") {
 		$_SESSION['error'] = "PLEASE FILL IN ALL REQUIRED FIELDS";
 	}
+	else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$_SESSION['error'] = "INVALID EMAIL ADDRESS";
+	}
 	else {
 	
 	$stmt1 = oci_parse($conn, "select username, email from adminusers where username = '".$username."' or email = '".$email."'");
